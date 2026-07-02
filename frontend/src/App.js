@@ -1,54 +1,82 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
 import { HOME } from "@/constants/testIds";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          data-testid={HOME.emergentLink}
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+import LoginForm from "@/components/Auth/LoginForm";
+import SignupForm from "@/components/Auth/SignupForm";
+import ChatInterface from "@/components/Chat/ChatInterface";
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [isLoginView, setIsLoginView] = useState(true);
+  const [currentSessionId, setCurrentSessionId] = useState(null);
+
+  // Check for existing auth token on mount
+  useEffect(() => {
+    const token = localStorage.getItem('auth_token');
+    if (token) {
+      // In a real app, we'd validate this with the backend
+      // For now, we'll just note that user might be authenticated
+      console.log('Found existing auth token');
+    }
+  }, []);
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+  };
+
+  const handleSignupSuccess = (userData) => {
+    setUser(userData);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('auth_token');
+    setUser(null);
+    setCurrentSessionId(null);
+  };
+
+  const handleNewSession = (session) => {
+    setCurrentSessionId(session.session_id);
+  };
+
+  // If not authenticated, show login/signup forms
+  if (!user) {
+    return isLoginView ? (
+      <LoginForm 
+        onLoginSuccess={handleLoginSuccess}
+        onToggleToSignup={() => setIsLoginView(false)}
+      />
+    ) : (
+      <SignupForm 
+        onSignupSuccess={handleSignupSuccess}
+        onToggleToLogin={() => setIsLoginView(true)}
+      />
+    );
+  }
+
+  // If authenticated, show chat interface
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div className="h-screen flex flex-col">
+      {/* Top bar with user info */}
+      <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-card">
+        <div className="text-sm text-muted-foreground">
+          Welcome, {user.name || user.email}
+        </div>
+        <button
+          onClick={handleLogout}
+          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          Logout
+        </button>
+      </div>
+      
+      {/* Main chat area */}
+      <div className="flex-1 overflow-hidden">
+        <ChatInterface 
+          sessionId={currentSessionId}
+          onNewSession={handleNewSession}
+        />
+      </div>
     </div>
   );
 }

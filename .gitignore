@@ -1,9 +1,17 @@
-```
-# Python
+node_modules/
+dist/
+build/
+*.js
+.env
+.env.local
+.env.*
+.vscode/
+.idea/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+jalankan-journal-guinevere-web-a3230
 .Python
 env/
 venv/
@@ -14,33 +22,25 @@ venv/
 .env.local
 .env.*
 .env.local.*
-
-# Build and distribution artifacts
 build/
 dist/
 *.egg-info/
 *.so
 *.dylib
 *.dll
-
-# Testing
 .coverage
 coverage/
 htmlcov/
 .pytest_cache/
 .hypothesis/
-
-# IDE and editor
 .vscode/
 .idea/
 *.swp
 *.swo
 *.tmp
-
-# OS
+*.log
+*.tmp
+*.swp
 .DS_Store
 Thumbs.db
-
-# Logs
 *.log
-```
