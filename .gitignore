@@ -1,35 +1,46 @@
-```
-# Dependencies
 node_modules/
-
-# Build artifacts
 dist/
 build/
 *.js
-
-# Environment
 .env
 .env.local
 .env.*
-
-# Editors
 .vscode/
 .idea/
-
-# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-
-# Logs
+jalankan-journal-guinevere-web-a3230
+.Python
+env/
+venv/
+.venv/
+.ENV
+.ENV.local
+.env
+.env.local
+.env.*
+.env.local.*
+build/
+dist/
+*.egg-info/
+*.so
+*.dylib
+*.dll
+.coverage
+coverage/
+htmlcov/
+.pytest_cache/
+.hypothesis/
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
 *.log
-
-# Temp files
 *.tmp
 *.swp
-
-# OS
 .DS_Store
 Thumbs.db
-```
+*.log

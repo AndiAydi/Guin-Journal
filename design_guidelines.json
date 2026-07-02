@@ -1,0 +1,138 @@
+{
+  "theme_and_archetype": {
+    "name": "Archetype 1 (Organic & Earthy) blended with Soft Utility",
+    "mode": "Light (Default) / Dark (Supported)",
+    "description": "A calm, proactive AI growth mentor. The aesthetic is lightweight, clean, and modern. Light mode uses warm off-white/ivory backgrounds with a carefully calibrated saffron/mustard yellow accent to avoid eye strain. Dark mode relies on deep slate/charcoal for a modern AI tool feel. It avoids the generic ChatGPT clone look by introducing elegant typography and spacious journaling layouts."
+  },
+  "typography": {
+    "fonts": {
+      "headings": {
+        "family": "'Outfit', sans-serif",
+        "usage": "Auth pages, Dashboard section titles, Sidebar headers, empty states.",
+        "weights": [400, 500, 600, 700]
+      },
+      "body": {
+        "family": "'Figtree', sans-serif",
+        "usage": "UI elements, buttons, sidebar links, settings, charts.",
+        "weights": [400, 500, 600]
+      },
+      "journal": {
+        "family": "'Lora', serif",
+        "usage": "Immersive 'Guinevere Journal' chat area, markdown rendered history, AI mentor responses.",
+        "weights": [400, 500, 600, 700]
+      }
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl tracking-tight leading-tight",
+      "h2": "text-2xl sm:text-3xl tracking-tight leading-snug",
+      "h3": "text-xl sm:text-2xl tracking-tight",
+      "body": "text-base leading-relaxed",
+      "ui_small": "text-sm tracking-wide"
+    },
+    "rules": [
+      "Never center text by default. Define explicit alignment (mostly left-aligned).",
+      "Use Lora (serif) for the actual chat messages and journal entries to give 'Guinevere' a distinct, mentor-like personality.",
+      "Use Outfit for application structural headings (Dashboard, Settings)."
+    ]
+  },
+  "color_palette": {
+    "light": {
+      "background": "#F9F7F5",
+      "foreground": "#1C1917",
+      "card": "#FFFFFF",
+      "card_foreground": "#1C1917",
+      "popover": "#FFFFFF",
+      "popover_foreground": "#1C1917",
+      "primary": "#DFAF2B",
+      "primary_foreground": "#1C1917",
+      "secondary": "#E7E5E4",
+      "secondary_foreground": "#1C1917",
+      "muted": "#F5F5F4",
+      "muted_foreground": "#78716C",
+      "accent": "#F5F5F4",
+      "accent_foreground": "#1C1917",
+      "destructive": "#EF4444",
+      "destructive_foreground": "#FAFAF9",
+      "border": "#E7E5E4",
+      "input": "#E7E5E4",
+      "ring": "#DFAF2B",
+      "sidebar_background": "#F2F0ED"
+    },
+    "dark": {
+      "background": "#0D1117",
+      "foreground": "#F3F4F6",
+      "card": "#161B22",
+      "card_foreground": "#F3F4F6",
+      "popover": "#161B22",
+      "popover_foreground": "#F3F4F6",
+      "primary": "#F6C945",
+      "primary_foreground": "#0D1117",
+      "secondary": "#21262D",
+      "secondary_foreground": "#F3F4F6",
+      "muted": "#1C2128",
+      "muted_foreground": "#8B949E",
+      "accent": "#1C2128",
+      "accent_foreground": "#F3F4F6",
+      "destructive": "#7F1D1D",
+      "destructive_foreground": "#F3F4F6",
+      "border": "#30363D",
+      "input": "#30363D",
+      "ring": "#F6C945",
+      "sidebar_background": "#090C10"
+    }
+  },
+  "spacing_and_layout": {
+    "general": [
+      "Use generative spacing (p-6, p-8, p-12). Avoid cramped layouts.",
+      "Max width for the Guinevere Journal chat area is max-w-3xl to ensure comfortable reading of markdown content."
+    ],
+    "sidebar": {
+      "width": "w-64 md:w-72",
+      "behavior": "Fixed on desktop, hidden behind a hamburger on mobile (use Sheet component).",
+      "styling": "Solid background (sidebar_background), 1px right border (border)."
+    },
+    "dashboard_grid": {
+      "type": "Control Room Grid",
+      "columns": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4",
+      "gap": "gap-6",
+      "cards": "Subtle roundness (rounded-xl), 1px solid border (border), minimal shadow (shadow-sm). Use flat cards, not glass."
+    },
+    "chat_area": {
+      "layout": "Flex column, scrollable message area, fixed bottom input.",
+      "user_bubble": "Align right, bg-primary/10 (light) or bg-primary/20 (dark), text-foreground, rounded-2xl rounded-tr-sm.",
+      "ai_bubble": "Align left, bg-card, border border-border, rounded-2xl rounded-tl-sm, font-journal."
+    }
+  },
+  "components": {
+    "buttons": "Shadcn standard. Primary buttons use the Warm Yellow (primary) with Dark text. Never use yellow for secondary actions.",
+    "inputs": "Shadcn standard. Focus state must use ring-primary.",
+    "cards": "Shadcn standard. Use pure white (light) or lighter slate (dark) to contrast against the main background.",
+    "charts": "Use Recharts or Shadcn charts. Primary data series must use the primary yellow color. Secondary data uses muted grays.",
+    "tables": "For Journal History. Clean rows, border-b only, hover state: bg-muted/50."
+  },
+  "motion_and_interactions": {
+    "hover_states": "Buttons and interactive cards must have -translate-y-[1px] and slight shadow increase on hover.",
+    "transitions": "Use transition-all duration-200 ease-in-out for color and transform changes.",
+    "chat_stream": "Ensure typing indicators and streamed messages do not cause layout thrashing. Keep the input bar locked at the bottom."
+  },
+  "accessibility_and_testing": {
+    "contrast": "Text on primary (yellow) buttons MUST be dark (foreground) for APCA/WCAG compliance.",
+    "testing_attributes": "CRITICAL: All interactive elements (buttons, links, inputs, sidebar items) MUST have data-testid attributes (e.g., data-testid='sidebar-chat-link').",
+    "focus": "All focusable elements must have visible focus rings (focus:ring-2 focus:ring-primary)."
+  },
+  "media_urls": {
+    "empty_state_background": {
+      "url": "https://images.unsplash.com/photo-1708465034183-7e3528d41944?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMHdhcm0lMjBzYW5kJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3ODIzOTA0MzB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Abstract warm sand background, use for auth screens or empty states with a soft overlay."
+    },
+    "journal_cover_placeholder": {
+      "url": "https://images.pexels.com/photos/10997633/pexels-photo-10997633.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Minimalist gratitude journal on grey background, use for Journal History empty state or banner."
+    },
+    "brand_icon": {
+      "url": "https://images.unsplash.com/photo-1705904506562-f28266845273?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwZWxlZ2FudCUyMGxvZ28lMjBpY29ufGVufDB8fHx8MTc4MjM5MDQyOXww&ixlib=rb-4.1.0&q=85",
+      "description": "Minimalist elegant logo icon, use as placeholder for Guinevere brand logo in sidebar."
+    }
+  },
+  "iconography": "Use 'lucide-react' for all icons. Keep icon stroke-width to 1.5 for a clean, sophisticated look."
+}
